@@ -223,6 +223,7 @@ function viewFeed(id) {
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((response) => response.json())
       .then((data) => {
+          console.log(data)
           localStorage.setItem('viewedPost', JSON.stringify(data))
           window.location.href = 'view.html'
           // console.log(data)
