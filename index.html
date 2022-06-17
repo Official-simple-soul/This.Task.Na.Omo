@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="Swiper/swiper-bundle.min.css">
+    <link href="css/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- google font -->
@@ -79,14 +80,14 @@
                         </div>
                         <div class="list-items text-light pt-3">
                             <ul>
-                                <li><a><i class="fa-solid fa-newspaper"></i> News Feed</a></li>
-                                <li><a><i class="fa-solid fa-suitcase"></i> Subscription</a></li>
-                                <li><a><i class="fa-solid fa-user-group"></i> Friends</a></li>
-                                <li><a><i class="fa-solid fa-pager"></i> Pages</a></li>
-                                <li><a><i class="fa-solid fa-store"></i> Market Place</a></li>
-                                <li><a><i class="fa-solid fa-angles-up"></i> Upgrade</a></li>
-                                <li><a><i class="fa-solid fa-angles-up"></i> Look into Us</a></li>
-                                <li><a><i class="fa-solid fa-eye"></i> Sign Up</a></li>
+                                <li><a href="#"><i class="fa-solid fa-newspaper"></i> News Feed</a></li>
+                                <li><a href="#"><i class="fa-solid fa-suitcase"></i> Subscription</a></li>
+                                <li><a href="#"><i class="fa-solid fa-user-group"></i> Friends</a></li>
+                                <li><a href="#"><i class="fa-solid fa-pager"></i> Pages</a></li>
+                                <li><a href="#"><i class="fa-solid fa-store"></i> Market Place</a></li>
+                                <li><a href="#"><i class="fa-solid fa-angles-up"></i> Upgrade</a></li>
+                                <li><a href="#"><i class="fa-solid fa-angles-up"></i> Look into Us</a></li>
+                                <li><a href="#"><i class="fa-solid fa-eye"></i> Sign Up</a></li>
                             </ul>
                         </div>
                     </div>
@@ -96,59 +97,59 @@
                             <!-- Additional required wrapper -->
                             <div class="swiper-wrapper">
                               <!-- Slides -->
-                              <div class="swiper-slide">
-                                  <div class="card">
+                              <div class="swiper-slide card border-0">
+                                  <div class="card border-0 w-100">
                                     <img src="img/face1.jpg" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                   </div>
                               </div>
-                              <div class="swiper-slide">
-                                  <div class="card">
+                              <div class="swiper-slide card border-0">
+                                  <div class="card border-0 w-100">
                                     <img src="img/face2.png" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                   </div>
                               </div>
-                              <div class="swiper-slide">
-                                  <div class="card">
+                              <div class="swiper-slide card border-0">
+                                  <div class="card border-0 w-100">
                                     <img src="img/face3.jpg" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                   </div>
                               </div>
                               <div class="swiper-slide">
-                                <div class="card">
+                                <div class="card border-0 w-100">
                                     <img src="img/team7.jpg" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
-                                <div class="card">
+                                <div class="card border-0 w-100">
                                     <img src="img/face5.jpg" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
-                                <div class="card">
+                                <div class="card border-0 w-100">
                                     <img src="img/face6.jpg" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
-                                <div class="card">
+                                <div class="card border-0 w-100">
                                     <img src="img/team1.jpg" alt="" class="image-fluid section-2-img">
                                     <div class="story-text position-absolute">
-                                        <h6>st</h6>
+                                        <h6>view feed</h6>
                                     </div>
                                 </div>
                             </div>
@@ -174,9 +175,9 @@
                                     <form class="feed" id="post-form">
                                         <div class="mb-3">
                                           <label for="fullname" class="form-label">Full Name</label>
-                                          <input type="name" placeholder="enter your name" class="title form-control w-50 title"  id="exampleInputEmail1" aria-describedby="emailHelp">
+                                          <input type="text" name="name" placeholder="enter your name" class="title form-control w-50 title"  id="exampleInputEmail1" aria-describedby="emailHelp">
                                         </div>
-                                        <textarea name="" id="body" placeholder="What is on your mind" cols="" rows="4" class="px-2 w-100 text-area userContent border-secondary"></textarea>
+                                        <textarea name="text" type="text" id="body" placeholder="What is on your mind" cols="" rows="4" class="px-2 w-100 text-area userContent border-secondary"></textarea>
                                         <div class="buttons d-flex w-75 mx-auto justify-content-between">
                                             <button class="Post btn btn-dark postfeed" type="submit">Post Feed</button>
                                             <button class="Post btn btn-dark get-feed" type="button" id="more">Get Feeds</button>
@@ -188,13 +189,14 @@
                                 <h5 class="user-name"></h5>
                                 <p class="user-post"></p>
                             </div>
-                            <div class="rowPost">
+                            <div class="rowPost" data-aos="zoom-in" data-aos-duration="2000">
                                 <div class="col-10 col-md mx-auto mb-3">
                                     <div class="cardPost bg-dark text-light h-100  rounded">
                                         <div class="card-body">
                                             <p class="d-none">1</p>
                                             <div class="head d-flex justify-content-between align-items-center">
                                                 <h6 id="post-title">Simple-soul</h6>
+                                                <h6><del>Default Feed</del></h6>
                                                 <img src="img/Simple.jpg" alt="" class="head-image" width="70px" height="80px">
                                             </div>
                                             
@@ -225,8 +227,12 @@
         </div>
     </section>
 
+    <script src="js/aos.js"></script>
     <script src="Swiper/swiper-bundle.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

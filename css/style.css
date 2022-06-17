@@ -47,21 +47,16 @@
     width: 100%;
   }
 
-  .swiper .card {
-      width: 120px;
-      margin: auto;
-      border: none;
-  }
-
   .story-text {
-      background-color: rgb(152, 155, 158);
-      color: whitesmoke;
-      border-radius: 50%;
-      border: none;
-      width: 25px;
-      height: 25px;
+      background-color: rgba(152, 155, 158, 0.479);
+      color: rgb(255, 255, 255);
+      width: 80%;
+      bottom: 0;
+      left: 4%;
+      height: 17px;
       text-align: center;
       margin: 2px 0px 0px 2px ;
+      
   }
 
   .card {
@@ -73,10 +68,13 @@
   }
 
   .list-items ul li {
-      text-decoration: none;
       list-style: none;
       margin-bottom: 15px;
   }
+  .list-items ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
 
   .list-items ul li .fa-solid {
       margin-right: 10px;

@@ -61,10 +61,10 @@ const swiper = new Swiper('.swiper', {
 
 //   ===================================================
 
+// Storing Variables
 
-
-let getFeed = document.querySelector('.get-feed');
-let postForm = document.querySelector('#post-form');
+let importFeed = document.querySelector('.get-feed');
+let viewForm = document.querySelector('#post-form');
 let title = document.querySelector('.title');
 let body  = document.querySelector('#body');
 
@@ -76,11 +76,42 @@ let dataArray = 0;
 let postBox = [];
 
 
+// blockHtml into function
 
-postForm.addEventListener('submit', createPost)
+function blockHtml (arr) {
+  let postHolder = '';
+          arr.forEach(post => {
+              postHolder += `
+                  <div class="col-10 mx-auto mb-3" data-aos="zoom-in" data-aos-duration="2000">
+                      <div class="cardPost bg-dark text-light h-100  rounded">
+                          <div class="card-body">
+                              <p class="d-none">${post.id}</p>
+                              <div class="head d-flex justify-content-between align-items-center">
+                                <h6 id="post-title" class="post-title">${post.title}</h6>
+                                <img src="img/female.png" alt="" class="head-image" width="70px" height="80px">
+                              </div>
+                              <p id="post-body" class="post-body">${post.body}</p>
+                              <div class="d-flex justify-content-between">
+                                  <button class="btn btn-light text-dark" onclick="editFeed(${post.id})">Update</button>
+                                  <button class="btn btn-dark border-light" id="view-btn" onclick="viewFeed(${post.id})">view More</button>
+                                  <button class="border-0 bg-transparent" onclick="deleteMyFeed(${post.id})"><i class="fa-solid fa-trash-can text-danger fs-1"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              `
+          });
+          rowPost.innerHTML = postHolder;
+}
 
 
-function createPost(e) {
+
+// feed setting
+
+viewForm.addEventListener('submit', setFeed)
+
+
+function setFeed(e) {
   alert('you want to create post')
     e.preventDefault();
     // console.log(title.value, body.value)
@@ -106,22 +137,26 @@ function createPost(e) {
 
         // let postHolder = '';
         
-        renderUI(postBox)
+        blockHtml(postBox)
     })
 }
 
 
-// get feed
+// feed importing
 
-getFeed.addEventListener('click', getPost)
+// click functions
 
-getFeed.addEventListener('click', getmore)
+importFeed.addEventListener('click', importPost)
+
+importFeed.addEventListener('click', getmore)
 
 function getmore() {
   document.getElementById('more').innerHTML = 'get more';
 }
 
-function getPost(){
+// import function
+
+function importPost(){
 
   window.alert('you want to get feeds');
   
@@ -133,11 +168,13 @@ function getPost(){
 
     .then((data) => {
         postBox = data
-        renderUI(postBox)
+        blockHtml(postBox)
     })
 };
 
-function updatePost(id) {
+// edit feed
+
+function editFeed(id) {
   window.alert('you want to update post');
 
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
@@ -180,8 +217,9 @@ function updatePost(id) {
       });
 }
 
+// view feed
 
-function viewPost(id) {
+function viewFeed(id) {
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -191,13 +229,9 @@ function viewPost(id) {
       });
 }
 
+// delete feed
 
-
-
-
-
-
-function deleteMyPost(id) {
+function deleteMyFeed(id) {
   fetch('https://jsonplaceholder.typicode.com/posts' + "/" + id, {
       method: 'DELETE',
       headers: {
@@ -210,73 +244,11 @@ function deleteMyPost(id) {
 
       // let postHolder = '';
 
-        renderUI(postBox)
+        blockHtml(postBox)
 })
 }
 
-// function deleteMyPost2(id) {
-//   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-//       method: 'DELETE',
-//       headers: {
-//           "Content-type": "application/json"
-//       }
-//   })
-//   .then((response) => response.json())
-//   .then((data) => {
-//       // rowWrap.shift(data);
-//       console.log(dataArray);
 
-//         for (let i = 0; i < 1; i++) {
-//           rowWrap.innerHTML += `
-//           <div class="col-10 mx-auto mb-3">
-//           <div class="cardPost bg-dark text-light h-100  rounded">
-//               <div class="card-body">
-//                   <p class="d-non">${data[dataArray].id}</p>
-//                   <div class="head d-flex justify-content-between align-items-center">
-//                     <h6 id="post-title" class="post-title">${data[dataArray].title}</h6>
-//                     <img src="img/female.png" alt="" class="head-image" width="70px" height="80px">
-//                   </div>
-//                   <p id="post-body" class="post-body">${data[dataArray].body}</p>
-//                   <div class="d-flex justify-content-between">
-//                     <button class="btn btn-light text-dark" id="update" onclick="updatePost(${data[dataArray].id})">Update</button>
-//                     <button class="btn btn-dark border-light" id="view" onclick="viewPost(${data[dataArray].id})">View More</button>
-//                     <button class="border-0 bg-transparent" id="delete" onclick="deleteMyPost2(${data[dataArray].id})"><i class="fa-solid fa-trash-can text-danger fs-1"></i></button>
-//                   </div>
-//               </div>
-//           </div>
-//           `
-//           dataArray = dataArray + 1;
-//         }
-//   })
-// }
-
-
-
-function renderUI (arr) {
-  let postHolder = '';
-          arr.forEach(post => {
-              postHolder += `
-                  <div class="col-10 mx-auto mb-3">
-                      <div class="cardPost bg-dark text-light h-100  rounded">
-                          <div class="card-body">
-                              <p class="d-none">${post.id}</p>
-                              <div class="head d-flex justify-content-between align-items-center">
-                                <h6 id="post-title" class="post-title">${post.title}</h6>
-                                <img src="img/female.png" alt="" class="head-image" width="70px" height="80px">
-                              </div>
-                              <p id="post-body" class="post-body">${post.body}</p>
-                              <div class="d-flex justify-content-between">
-                                  <button class="btn btn-light text-dark" onclick="updatePost(${post.id})">Update</button>
-                                  <button class="btn btn-dark border-light" id="view-btn" onclick="viewPost(${post.id})">view More</button>
-                                  <button class="border-0 bg-transparent" onclick="deleteMyPost(${post.id})"><i class="fa-solid fa-trash-can text-danger fs-1"></i></button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              `
-          });
-          rowPost.innerHTML = postHolder;
-}
 
 
 
