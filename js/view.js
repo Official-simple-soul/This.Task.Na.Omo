@@ -2,25 +2,25 @@ let change = document.getElementById('like');
 
 
 
-function renderSingle() {
-    let newObject = localStorage.getItem('viewedPost')
+function checkFeed() {
+    let newObject = localStorage.getItem('viewedFeed')
     console.log(newObject);
     let post = JSON.parse(newObject)
     console.log(post)
-    // console.log(post.title)
+
     document.getElementById('post-id').innerHTML = post.id
     document.getElementById('post-title').innerHTML = post.title
     document.getElementById('post-body').innerHTML = post.body
 }
 
-renderSingle();
+checkFeed();
 
 
 
 
 
 
-
+// styling the like button
  
 
 change.addEventListener('click', changeColor)

@@ -73,7 +73,7 @@ let rowWrap = document.querySelector('.rowWrap');
 let rowPost = document.querySelector('.rowPost');
 
 let dataArray = 0;
-let postBox = [];
+let feedBox = [];
 
 
 // blockHtml into function
@@ -131,13 +131,13 @@ function setFeed(e) {
 
         console.log(data)
         // postBox = data
-        postBox.unshift(data);
+        feedBox.unshift(data);
 
-        console.log(postBox)
+        // console.log(feedBox)
 
         // let postHolder = '';
         
-        blockHtml(postBox)
+        blockHtml(feedBox)
     })
 }
 
@@ -167,8 +167,8 @@ function importPost(){
 })
 
     .then((data) => {
-        postBox = data
-        blockHtml(postBox)
+        feedBox = data
+        blockHtml(feedBox)
     })
 };
 
@@ -195,7 +195,7 @@ function editFeed(id) {
           console.log(data)
           let postTitles = document.querySelectorAll('.post-title') // 100 post titles [0 -99]
           let postBodies = document.querySelectorAll('.post-body')
-          console.log(postTitles)
+
           postTitles.forEach((postTitle, index) => {
               if (index + 1 === id) {
                   if (data.title !== "") {
@@ -224,7 +224,7 @@ function viewFeed(id) {
       .then((response) => response.json())
       .then((data) => {
           console.log(data)
-          localStorage.setItem('viewedPost', JSON.stringify(data))
+          localStorage.setItem('viewedFeed', JSON.stringify(data))
           window.location.href = 'view.html'
           // console.log(data)
       });
@@ -241,11 +241,11 @@ function deleteMyFeed(id) {
   })
   .then((response) => response.json())
   .then((data) => {
-      postBox.shift(data);
+      feedBox.shift(data);
 
       // let postHolder = '';
 
-        blockHtml(postBox)
+        blockHtml(feedBox)
 })
 }
 
