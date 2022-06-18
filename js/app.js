@@ -107,11 +107,19 @@ function blockHtml (arr) {
 
 
 // feed setting
+// function myFunction() {
+//   document.getElementById("post-form").reset();
+// }
+
+
+
 
 viewForm.addEventListener('submit', setFeed)
 
 
+
 function setFeed(e) {
+ 
   alert('you want to create post')
     e.preventDefault();
     // console.log(title.value, body.value)
@@ -139,6 +147,8 @@ function setFeed(e) {
         
         blockHtml(feedBox)
     })
+
+    document.getElementById("post-form").reset()
 }
 
 
