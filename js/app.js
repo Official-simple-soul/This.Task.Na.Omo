@@ -186,21 +186,21 @@ function editFeed(id) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      let postTitles = document.querySelectorAll(".post-title"); // 100 post titles [0 -99]
-      let postBodies = document.querySelectorAll(".post-body");
+      let feedTitles = document.querySelectorAll(".post-title");
+      let feedBodies = document.querySelectorAll(".post-body");
 
-      postTitles.forEach((postTitle, index) => {
+      feedTitles.forEach((feedTitle, index) => {
         if (index + 1 === id) {
           if (data.title !== "") {
-            postTitle.innerHTML = data.title;
+            feedTitle.innerHTML = data.title;
           }
         }
       });
 
-      postBodies.forEach((postBody, index) => {
+      feedBodies.forEach((feedBody, index) => {
         if (index + 1 === id) {
           if (data.body !== "") {
-            postBody.innerHTML = data.body;
+            feedBody.innerHTML = data.body;
           }
         }
       });
