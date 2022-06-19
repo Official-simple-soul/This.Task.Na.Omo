@@ -1,87 +1,83 @@
-
-
 // section 2
 
-const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
-    effect: 'card',
-  
+const swiper = new Swiper(".swiper", {
+  // Optional parameters
+  direction: "horizontal",
+  loop: true,
+  effect: "card",
+
+  autoplay: {
+    delay: 3000,
+  },
+
+  // If we need pagination
+  pagination: {
+    el: ".swiper-pagination1",
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+
+  // And if we need scrollbar
+  scrollbar: {
+    el: ".swiper-scrollbar",
+  },
+
+  // Default parameters
+
+  // Responsive breakpoints
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    // when window width is >= 480px
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 30,
+    },
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 4,
+      spaceBetween: 40,
+    },
+
+    1200: {
+      slidesPerView: 6,
+      spaceBetween: 40,
+    },
+
     autoplay: {
       delay: 3000,
     },
-  
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination1',
-    },
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  
-    // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-    
-        // Default parameters
-
-        // Responsive breakpoints
-        breakpoints: {
-          // when window width is >= 320px
-          320: {
-            slidesPerView: 2,
-            spaceBetween: 20
-          },
-          // when window width is >= 480px
-          480: {
-            slidesPerView: 2,
-            spaceBetween: 30
-          },
-          // when window width is >= 640px
-          640: {
-            slidesPerView: 4,
-            spaceBetween: 40
-          },
-
-          1200: {
-            slidesPerView: 6,
-            spaceBetween: 40
-          },
-
-          autoplay: {
-            delay: 3000,
-          },
-        }
-  });
+  },
+});
 
 //   ===================================================
 
 // Storing Variables
 
-let importFeed = document.querySelector('.get-feed');
-let viewForm = document.querySelector('#post-form');
-let title = document.querySelector('.title');
-let body  = document.querySelector('#body');
+let importFeed = document.querySelector(".get-feed");
+let viewForm = document.querySelector("#post-form");
+let title = document.querySelector(".title");
+let body = document.querySelector("#body");
 
-
-let rowWrap = document.querySelector('.rowWrap');
-let rowPost = document.querySelector('.rowPost');
+let rowWrap = document.querySelector(".rowWrap");
+let rowPost = document.querySelector(".rowPost");
 
 let dataArray = 0;
 let feedBox = [];
 
-
 // blockHtml into function
 
-function blockHtml (arr) {
-  let postHolder = '';
-          arr.forEach(post => {
-              postHolder += `
+function blockHtml(arr) {
+  let postHolder = "";
+  arr.forEach((post) => {
+    postHolder += `
                   <div class="col-10 mx-auto mb-3" data-aos="zoom-in" data-aos-duration="2000">
                       <div class="cardPost bg-dark text-light h-100  rounded">
                           <div class="card-body">
@@ -99,167 +95,148 @@ function blockHtml (arr) {
                           </div>
                       </div>
                   </div>
-              `
-          });
-          rowPost.innerHTML = postHolder;
+              `;
+  });
+  rowPost.innerHTML = postHolder;
 }
-
-
 
 // feed setting
 // function myFunction() {
 //   document.getElementById("post-form").reset();
 // }
 
-
-
-
-viewForm.addEventListener('submit', setFeed)
-
-
+viewForm.addEventListener("submit", setFeed);
 
 function setFeed(e) {
- 
-  alert('you want to create post')
-    e.preventDefault();
-    // console.log(title.value, body.value)
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        body: JSON.stringify({
-            title: title.value,
-            body: body.value,
-            userId: 2
-        }),
-        headers: {
-            'Content-type': 'application/json'
-        }
-    })
+  alert("you want to create post");
+  e.preventDefault();
+  // console.log(title.value, body.value)
+  fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    body: JSON.stringify({
+      title: title.value,
+      body: body.value,
+      userId: 2,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
     .then((response) => response.json())
-    .then((data)=> {
+    .then((data) => {
+      console.log(data);
+      // postBox = data
+      feedBox.unshift(data);
 
-        console.log(data)
-        // postBox = data
-        feedBox.unshift(data);
+      // console.log(feedBox)
 
-        // console.log(feedBox)
+      // let postHolder = '';
 
-        // let postHolder = '';
-        
-        blockHtml(feedBox)
-    })
+      blockHtml(feedBox);
+    });
 
-    document.getElementById("post-form").reset()
+  document.getElementById("post-form").reset();
 }
-
 
 // feed importing
 
 // click functions
 
-importFeed.addEventListener('click', importPost)
+importFeed.addEventListener("click", importPost);
 
-importFeed.addEventListener('click', getmore)
+importFeed.addEventListener("click", getmore);
 
 function getmore() {
-  document.getElementById('more').innerHTML = 'get more';
+  document.getElementById("more").innerHTML = "get more";
 }
 
 // import function
 
-function importPost(){
+function importPost() {
+  window.alert("you want to get feeds");
 
-  window.alert('you want to get feeds');
-  
-
-    fetch('https://jsonplaceholder.typicode.com/posts')
+  fetch("https://jsonplaceholder.typicode.com/posts")
     .then((res) => {
       return res.json();
-})
+    })
 
     .then((data) => {
-        feedBox = data
-        blockHtml(feedBox)
-    })
-};
+      feedBox = data;
+      blockHtml(feedBox);
+    });
+}
 
 // edit feed
 
 function editFeed(id) {
-  window.alert('you want to update post');
+  window.alert("you want to update post");
 
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-          id: id,
-          title: title.value,
-          body: body.value,
-          userId: 2,
-      }),
-      headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-      },
+    method: "PUT",
+    body: JSON.stringify({
+      id: id,
+      title: title.value,
+      body: body.value,
+      userId: 2,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
   })
-      .then((response) => response.json())
-      .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      let postTitles = document.querySelectorAll(".post-title"); // 100 post titles [0 -99]
+      let postBodies = document.querySelectorAll(".post-body");
 
-          console.log(data)
-          let postTitles = document.querySelectorAll('.post-title') // 100 post titles [0 -99]
-          let postBodies = document.querySelectorAll('.post-body')
-
-          postTitles.forEach((postTitle, index) => {
-              if (index + 1 === id) {
-                  if (data.title !== "") {
-                      postTitle.innerHTML = data.title
-                  }
-              }
-
-          })
-
-          postBodies.forEach((postBody, index) => {
-              if (index + 1 === id) {
-                  if (data.body !== "") {
-                      postBody.innerHTML = data.body
-                  }
-              }
-
-          })
-
+      postTitles.forEach((postTitle, index) => {
+        if (index + 1 === id) {
+          if (data.title !== "") {
+            postTitle.innerHTML = data.title;
+          }
+        }
       });
+
+      postBodies.forEach((postBody, index) => {
+        if (index + 1 === id) {
+          if (data.body !== "") {
+            postBody.innerHTML = data.body;
+          }
+        }
+      });
+    });
 }
 
 // view feed
 
 function viewFeed(id) {
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-          console.log(data)
-          localStorage.setItem('viewedFeed', JSON.stringify(data))
-          window.location.href = 'view.html'
-          // console.log(data)
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      localStorage.setItem("viewedFeed", JSON.stringify(data));
+      window.location.href = "view.html";
+      // console.log(data)
+    });
 }
 
 // delete feed
 
 function deleteMyFeed(id) {
-  fetch('https://jsonplaceholder.typicode.com/posts' + "/" + id, {
-      method: 'DELETE',
-      headers: {
-          "Content-type": "application/json"
-      }
+  window.alert("Are you sure you want to delete post");
+
+  fetch("https://jsonplaceholder.typicode.com/posts" + "/" + id, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
   })
-  .then((response) => response.json())
-  .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
       feedBox.shift(data);
 
       // let postHolder = '';
 
-        blockHtml(feedBox)
-})
+      blockHtml(feedBox);
+    });
 }
-
-
-
-
-
